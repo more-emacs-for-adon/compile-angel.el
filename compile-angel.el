@@ -1374,7 +1374,7 @@ be JIT compiled."
       (when-let* ((fname (compile-angel--normalize-el-file (car entry))))
         (compile-angel--debug-message
           "compile-angel--get-list-non-native-compiled: ADD: %s" fname)
-        (puthash fname t list-el-files)))
+        (puthash (file-truename fname) t list-el-files)))
 
     ;; Collect .el files from features
     (dolist (feature features)
@@ -1388,7 +1388,7 @@ be JIT compiled."
               (compile-angel--debug-message
                 "compile-angel--get-list-non-native-compiled: ADD: %s"
                 feature-el-file)
-              (puthash feature-el-file t list-el-files))))))
+              (puthash (file-truename feature-el-file) t list-el-files))))))
 
     ;; Check each file and build result
     (maphash
