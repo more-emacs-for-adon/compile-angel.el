@@ -674,10 +674,6 @@ Return the byte compile result."
                                      (not compile-angel-debug))))
            (prog-mode-hook nil)
            (emacs-lisp-mode-hook nil)
-
-           ;; Prevent any interactive prompts during byte compilation.
-           (inhibit-interaction t)
-
            (byte-compile-result
             (condition-case err
                 (progn
@@ -700,7 +696,6 @@ Return the byte compile result."
                  (error-message-string err))
                ;; Do not native compile
                nil))))
-      (ignore inhibit-interaction)
       byte-compile-result))))
 
 (defun compile-angel--need-compilation-p (el-file el-file-truename feature)
